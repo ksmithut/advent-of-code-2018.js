@@ -1,0 +1,20 @@
+{
+  "name": "advent-of-code-2018.js",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "format": "prettier-eslint '**/*.js' --write",
+    "lint": "standard && prettier-eslint '**/*.js' --list-different"
+  },
+  "adventConfig": {
+    "year": "2018",
+    "nameTemplate": "days/day{{num}}.js",
+    "templateFile": "template.js"
+  },
+  "devDependencies": {
+    "advent-of-code": "^3.1.0",
+    "prettier-eslint-cli": "^4.7.1",
+    "standard": "^12.0.1"
+  }
+}
