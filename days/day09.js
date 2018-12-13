@@ -16,26 +16,48 @@ const parseInput = input => {
   }
 }
 
+const createCircle = () => {
+  return {
+    add (value, after) {
+      const node = { value }
+      if (!after) {
+        node.prev = node
+        node.next = node
+      } else {
+        node.prev = after
+        node.next = after.next
+        after.next.prev = node
+        after.next = node
+      }
+      return node
+    },
+    move (node, amount) {
+      const direction = amount > 0 ? 'next' : 'prev'
+      let cursor = node
+      for (let i = 0; i < Math.abs(amount); i++) cursor = cursor[direction]
+      return cursor
+    },
+    remove (node) {
+      node.prev.next = node.next
+      node.next.prev = node.prev
+      return node
+    }
+  }
+}
+
 const playGame = (maxPlayers, lastMarble) => {
   const scores = range(1, maxPlayers).map(() => 0)
-  let cursor = { value: 0 }
-  Object.assign(cursor, { next: cursor, prev: cursor })
+  const circle = createCircle()
+  let cursor = circle.add(0)
   for (let marble = 1; marble <= lastMarble; marble++) {
     if (marble % 23 === 0) {
-      cursor = cursor.prev.prev.prev.prev.prev.prev
-      scores[marble % maxPlayers] += marble + cursor.prev.value
-      cursor.prev.prev.next = cursor
-      cursor.prev = cursor.prev.prev
+      const player = marble % maxPlayers
+      cursor = circle.move(cursor, -7)
+      const removedMarble = circle.remove(cursor)
+      scores[player] += marble + removedMarble.value
+      cursor = removedMarble.next
     } else {
-      const next = cursor.next
-      const toAdd = {
-        value: marble,
-        prev: next,
-        next: next.next
-      }
-      next.next.prev = toAdd
-      next.next = toAdd
-      cursor = toAdd
+      cursor = circle.add(marble, circle.move(cursor, 1))
     }
   }
   return scores.reduce((a, b) => Math.max(a, b))
