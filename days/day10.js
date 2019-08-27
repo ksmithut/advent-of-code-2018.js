@@ -59,7 +59,7 @@ const renderVectors = vectors => {
     grid[`${x}:${y}`] = true
     return grid
   }, {})
-  let lines = []
+  const lines = []
   for (let y = minY; y <= maxY; y++) {
     let line = ''
     for (let x = minX; x <= maxX; x++) {

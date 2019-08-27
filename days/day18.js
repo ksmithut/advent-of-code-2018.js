@@ -44,7 +44,7 @@ const runLandscape = grid => {
             ? { x, y, cell: '#' }
             : { x, y, cell }
         break
-      case '#':
+      case '#': {
         const { '|': trees = 0, '#': lumberyards = 0 } = neighbors.reduce(
           (counts, { cell }) => {
             counts[cell]++
@@ -54,6 +54,7 @@ const runLandscape = grid => {
         )
         newValue = trees && lumberyards ? { x, y, cell } : { x, y, cell: '.' }
         break
+      }
       default:
         throw new Error('hello')
     }
@@ -87,7 +88,7 @@ const part1 = input => {
 const part2 = input => {
   const minutes = 1000000000
   let grid = parseInput(input)
-  let history = []
+  const history = []
   let pattern = []
   for (let i = 0; i < minutes; i++) {
     const { '|': trees, '#': lumberyards } = countCells(grid)

@@ -15,6 +15,6 @@
   "devDependencies": {
     "advent-of-code": "^4.0.2",
     "prettier-eslint-cli": "^5.0.0",
-    "standard": "^13.0.0"
+    "standard": "^14.0.2"
   }
 }

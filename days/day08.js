@@ -21,13 +21,6 @@ const createTree = ([childrenCount, metadataCount, ...rest], count = 0) => {
   return { node, offset: 2 + offset + metadataCount }
 }
 
-const reduceTree = (reducer, value, node) => {
-  value = node.children.reduce((value, child) => {
-    return reduceTree(reducer, value, child)
-  }, value)
-  return reducer(value, node)
-}
-
 const part1 = input => {
   const numbers = parseInput(input)
   const { node } = createTree(numbers)

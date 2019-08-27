@@ -4,7 +4,7 @@
 // ======
 
 const parseInput = input => {
-  const input = input.replace(/^\^/, '').replace(/\$$/, '')
+  input = input.replace(/^\^/, '').replace(/\$$/, '')
   const path = []
   for (const char of input.split('')) {
     switch (char) {
@@ -19,7 +19,7 @@ const parseInput = input => {
 }
 
 const part1 = input => {
-  return input
+  return parseInput
 }
 
 // Part 2
