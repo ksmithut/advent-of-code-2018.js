@@ -13,8 +13,8 @@
     "templateFile": "template.js"
   },
   "devDependencies": {
-    "advent-of-code": "^4.0.2",
+    "advent-of-code": "^5.0.0",
     "prettier-eslint-cli": "^5.0.0",
-    "standard": "^14.0.2"
+    "standard": "^14.3.4"
   }
 }
